@@ -28,8 +28,9 @@ Route::prefix('productos')->group(function () {
 });
 Route::prefix('ventas')->group(function () {
     Route::get('/', 'VentasController@index')->name('ventas_index');
-    Route::get('/create', 'VentasController@create')->name('ventas_create');
-   
+    Route::get('/new', 'VentasController@new')->name('ventas_new');
+    Route::post('/create', 'VentasController@create')->name('ventas_create');
+    Route::get('/ajax-costo-producto', 'VentasController@costoProducto')->name('ajax_ventas_costo_producto');
 });
 Auth::routes();
 

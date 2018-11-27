@@ -8,7 +8,7 @@
           <div class="pull-left"><h3>Lista de Ventas</h3></div>
           <div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('ventas_create') }}" class="btn btn-info" >Vender</a>
+              <a href="{{ route('ventas_new') }}" class="btn btn-info" >Vender</a>
             </div>
           </div>
           <div class="table-container">
@@ -52,6 +52,5 @@
       {{ $ventas->links() }}
     </div>
   </div>
-</section>
- 
+</section> 
 @endsection

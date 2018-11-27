@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
 use App\Ventas;
+use App\Inventario;
+
+use Illuminate\Support\Facades\DB;
  
 class VentasController extends Controller
 {
@@ -18,85 +21,65 @@ class VentasController extends Controller
         $ventas=Ventas::orderBy('id','DESC')->paginate(3);
         return view('Ventas.index',compact('ventas')); 
     }
- 
+
     /**
-     * Show the form for creating a new resource.
+     * @return \Illuminate\Http\Response
+     */
+    public function new()
+    {
+        $productos = DB::table('productos')->get();
+
+        return view('Ventas.new',compact('productos'));
+    }
+
+    /**
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
+        if ($request->isMethod('post')) {
+            $productos = $request->get('productos_hidden');
+
+            foreach($productos as $key => $producto):
+                $cantidad = $request->get('cantidades_hidden')[$key];
+                $costoUnitario = $request->get('costos_unitarios_hidden')[$key];
+                $costoTotal = $request->get('costos_totales_hidden')[$key];
+
+                
+            endforeach;
+
+            //var_dump($input = $request->all());
+            die();
+        }
+
         return view('Ventas.create');
     }
- 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-        $this->validate($request,[ 'nombre'=>'required', 'codigo'=>'required', 'descripcion'=>'required']);
-        Productos::create($request->all());
-        return redirect()->route('productos_index')->with('success','Registro creado satisfactoriamente');
-    }
- 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $producto=Productos::find($id);
-        return  view('Productos.show',compact('Productos'));
-    }
- 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-       
-        $producto=Productos::find($id);
 
-        return view('Productos.edit',compact('producto'));
-    }
- 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Ajax para verificar el costo del producto en el inventario
      */
-    public function update(Request $request, $id)    {
-        //
-        $this->validate($request,[ 'nombre'=>'required', 'codigo'=>'required', 'descripcion'=>'required']);
- 
-        Productos::find($id)->update($request->all());
-        return redirect()->route('productos_index')->with('success','Registro actualizado satisfactoriamente');
- 
+    public function costoProducto() {
+        $productoId = $_GET['id'];
+
+        $producto = Inventario::where('idProducto', '=', $productoId)->first();
+        
+        if($producto){
+            if($producto->cantidad > 0) {
+                $message = '';
+            } else {
+                $message = 'No se poseen cantidades disponibles para la venta.';
+                $producto = null;
+            }
+        } else {
+            $message = 'No se posee el producto en el inventario.';
+            $producto = null;
+        }
+
+        $data['message'] = $message;
+        $data['producto'] = $producto;
+        return response()->json($data);  
     }
  
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        Productos::find($id)->delete();
-        return redirect()->route('productos_index')->with('success','Registro eliminado satisfactoriamente');
-    }
 }
