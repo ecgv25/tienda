@@ -41,6 +41,8 @@ class ProductosController extends Controller
         //
         $this->validate($request,[ 'nombre'=>'required', 'codigo'=>'required', 'descripcion'=>'required']);
         Productos::create($request->all());
+
+
         return redirect()->route('productos_index')->with('success','Registro creado satisfactoriamente');
     }
  

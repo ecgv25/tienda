@@ -1,43 +1,42 @@
-@extends('layouts.app')
+@extends('layouts.auth')
+
+@section('script_additional')
+
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<div class="card-body">
+        <form class="floating-labels" id="loginform" action="{{ route('login') }}" method="POST">
+            @csrf
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+            @include('auth.partials.logo')
 
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                <div class="col-xs-12">
+                    <h3>{{ __('Login') }}</h3>
+                </div>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+
+                         <div class="form-group m-t-40{{ $errors->has('correo') ? ' has-danger has-error' : '' }}">
+                            <input id="correo" type="email" class="form-control{{ $errors->has('correo') ? ' form-control-danger' : '' }}" name="correo" value="{{ old('correo') }}" required autofocus>
+                            <span class="bar"></span>
+                            <label for="correo"><span  class="input-group-addon"><i class="fa fa-envelope "></i></span>{{ __('E-Mail Address') }}</label>
+
+                            @if ($errors->has('correo'))
+                            <div class="form-control-feedback">
+                                <small>{{ $errors->first('correo') }}</small>
                             </div>
+                            @endif
+                       </div>
+
+
+
+                        <div class="form-group">
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            <span class="bar"></span>
+                            <label for="password"><span  class="input-group-addon"><i class="fa fa-lock "></i></span>{{ __('Password') }}</label>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">

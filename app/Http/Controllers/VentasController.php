@@ -47,14 +47,33 @@ class VentasController extends Controller
                 $costoUnitario = $request->get('costos_unitarios_hidden')[$key];
                 $costoTotal = $request->get('costos_totales_hidden')[$key];
 
-                
+                $observacion = 'venta de producto';
+                DB::table('movimientos_inventario')->insert([
+                    'idProducto' =>  $producto,
+                    'observacion' =>  $observacion,
+                    'idTipoMovimiento' => '2',
+                    ]);
+
+                    DB::table('productos_ventas')->insert([
+                        'idVenta' =>  1,
+                        'idProducto' =>  3,
+                        'cantidad' => '2',
+                        'montoUnitario' => '2',
+                        ]);
+
+                     
             endforeach;
 
-            //var_dump($input = $request->all());
-            die();
+            DB::table('ventas')->insert([
+                'monto' =>  '1222',
+                'idCliente' => '1',
+                'idVendedor' => '1',
+             
+                ]); 
         }
 
-        return view('Ventas.create');
+        $ventas=Ventas::orderBy('id','DESC')->paginate(3);
+        return view('Ventas.index',compact('ventas')); 
     }
 
     /**

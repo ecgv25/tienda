@@ -111,6 +111,7 @@
 		};
 
 		$(document).ready(function(){
+	
 			$('#producto').change(function(){
 				$.ajax({
     				type: "GET",
@@ -210,7 +211,8 @@
 				}).then(function(data) {
 					$.each(data, function( index, value ) {            
 						$.each(value, function( index1, value1 ) {        
-							var referencia = parseFloat(60/value1).toFixed(6);             
+							var referencia = parseFloat(60/value1).toFixed(6);          
+							alert(referencia);   
 							$('#referencia_crypto').val(referencia);
 						});
 					});           

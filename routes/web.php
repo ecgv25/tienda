@@ -32,6 +32,15 @@ Route::prefix('ventas')->group(function () {
     Route::post('/create', 'VentasController@create')->name('ventas_create');
     Route::get('/ajax-costo-producto', 'VentasController@costoProducto')->name('ajax_ventas_costo_producto');
 });
+Route::prefix('inventario')->group(function () {
+    Route::get('/', 'InventarioController@index')->name('inventario_index');
+    Route::post('/store', 'InventarioController@store')->name('inventario_store');
+    Route::get('/new', 'InventarioController@new')->name('inventario_new');
+    Route::get('/create', 'InventarioController@create')->name('inventario_create');
+    Route::get('/ajuste', 'InventarioController@ajuste')->name('inventario_ajuste');
+    Route::delete('/destroy/{id}', 'InventarioController@destroy')->name('inventario_destroy');
+    Route::get('/edit/{id}', 'InventarioController@edit')->name('inventario_edit');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

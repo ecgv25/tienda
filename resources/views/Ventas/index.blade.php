@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
   <section class="content">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-12 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="pull-left"><h3>Lista de Ventas</h3></div>
@@ -29,9 +29,9 @@
                 <td>{{$venta->comprador}}</td>
                 <td>{{$venta->vendedor}}</td>
 
-                <td><a class="btn btn-primary btn-xs" href="{{action('ProductosController@edit', $producto->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td><a class="btn btn-primary btn-xs" href="" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
-                  <form action="{{action('ProductosController@destroy', $producto->id)}}" method="post">
+                  <form action="" method="post">
                    {{csrf_field()}}
                    <input name="_method" type="hidden" value="DELETE">
  
