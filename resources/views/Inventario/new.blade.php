@@ -49,6 +49,11 @@
 										<input type="text" name="costoPetros" id="costoPetros" class="form-control input-sm" placeholder="costo en petro">
 									</div>
 								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="text" name="costoDivisas" id="costoDivisas" class="form-control input-sm" placeholder="costo en divisas">
+									</div>
+								</div>
 							</div>
  
 						

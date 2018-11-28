@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inventario extends Model
 {
-    protected $fillable = ['id', 'idProducto', 'cantidad' ,'costoPetros'];
+    protected $fillable = ['id', 'idProducto', 'cantidad' ,'costoDivisas','costoPetros'];
    
    
-    	/**
+    /**
 	* Get data Productos
 	*/
 	public function Productos()

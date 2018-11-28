@@ -42,6 +42,14 @@ class VentasController extends Controller
         if ($request->isMethod('post')) {
             $productos = $request->get('productos_hidden');
 
+            DB::table('ventas')->insert([
+                'monto' =>  '0000',
+                'idCliente' => '1',
+                'idVendedor' => '1',
+                'moneda' =>  $request->get('tipoMoneda'),
+             
+                ]); 
+
             foreach($productos as $key => $producto):
                 $cantidad = $request->get('cantidades_hidden')[$key];
                 $costoUnitario = $request->get('costos_unitarios_hidden')[$key];
@@ -51,28 +59,23 @@ class VentasController extends Controller
                 DB::table('movimientos_inventario')->insert([
                     'idProducto' =>  $producto,
                     'observacion' =>  $observacion,
-                    'idTipoMovimiento' => '2',
+                    'idTipoMovimiento' => '3',
                     ]);
 
                     DB::table('productos_ventas')->insert([
                         'idVenta' =>  1,
-                        'idProducto' =>  3,
-                        'cantidad' => '2',
-                        'montoUnitario' => '2',
+                        'idProducto' =>  $producto,
+                        'cantidad' =>  $cantidad,
+                        'montoUnitario' => $costoUnitario,
                         ]);
 
                      
             endforeach;
 
-            DB::table('ventas')->insert([
-                'monto' =>  '1222',
-                'idCliente' => '1',
-                'idVendedor' => '1',
-             
-                ]); 
+            
         }
 
-        $ventas=Ventas::orderBy('id','DESC')->paginate(3);
+        $ventas=Ventas::orderBy('id','DESC')->paginate(10);
         return view('Ventas.index',compact('ventas')); 
     }
 

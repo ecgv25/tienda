@@ -38,6 +38,7 @@ Route::prefix('inventario')->group(function () {
     Route::get('/new', 'InventarioController@new')->name('inventario_new');
     Route::get('/create', 'InventarioController@create')->name('inventario_create');
     Route::get('/ajuste', 'InventarioController@ajuste')->name('inventario_ajuste');
+    Route::post('/retirar', 'InventarioController@retirarProductoInventario')->name('inventario_retirar');
     Route::delete('/destroy/{id}', 'InventarioController@destroy')->name('inventario_destroy');
     Route::get('/edit/{id}', 'InventarioController@edit')->name('inventario_edit');
 });

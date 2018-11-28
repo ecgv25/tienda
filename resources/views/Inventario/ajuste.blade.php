@@ -25,13 +25,13 @@
 				</div>
 				<div class="panel-body">					
 					<div class="table-container">
-						<form method="POST" action="{{ route('inventario_create') }}"  role="form">
+						<form method="POST" action="{{ route('inventario_retirar') }}"  role="form">
 							{{ csrf_field() }}
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-									<label for="producto">Producto</label>
-											<select name="producto" id="producto" class="form-control input-sm">
+									<label for="idProducto">Producto</label>
+											<select name="idProducto" id="idProducto" class="form-control input-sm">
 												<option value="" selected>Seleccione una opci&oacute;n</option>
 												@foreach ($productos as $producto)
 													<option value="{{ $producto->id }}">{{ $producto->nombre }}</option>

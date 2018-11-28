@@ -30,8 +30,9 @@
               @if($inventario->count())  
               @foreach($inventario as $inv)  
               <tr>
-                <td>{{$inv->nombre}}</td>
+                <td>{{$inv->idProducto}}</td>
                 <td>{{$inv->cantidad}}</td>
+                <td>{{$inv->costoDivisas}}</td> 
                 <td>{{$inv->costoPetros}}</td>
                 <td>{{$inv->codigo}}</td>
                 <td><a class="btn btn-primary btn-xs" href="{{action('InventarioController@edit', $inv->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>

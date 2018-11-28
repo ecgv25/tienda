@@ -15,9 +15,10 @@
             <table id="mytable" class="table table-bordred table-striped">
              <thead>
                <th>Id</th>
+               <th>Producto</th>
                <th>Monto</th>
-               <th>Comprador</th>
-               <th>Vendedor</th>
+               <th>Moneda</th>
+               <th>Fecha</th>
                <th>Editar</th>
                <th>Eliminar</th>
              </thead>
@@ -25,9 +26,11 @@
               @if($ventas->count())  
               @foreach($ventas as $venta)  
               <tr>
+                <td>{{$venta->id}}</td>
+                
                 <td>{{$venta->monto}}</td>
-                <td>{{$venta->comprador}}</td>
-                <td>{{$venta->vendedor}}</td>
+                <td>{{$venta->moneda}}</td>
+                <td>{{$venta->create_at}}</td>
 
                 <td><a class="btn btn-primary btn-xs" href="" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
