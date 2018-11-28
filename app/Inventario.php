@@ -12,8 +12,8 @@ class Inventario extends Model
     	/**
 	* Get data Productos
 	*/
-	public function Productos()
+	public function productos()
 	{
-		return $this->hasMany('Productos', 'idProducto');
+        return $this->belongsTo('App\Productos','idProducto');
 	}
 }
