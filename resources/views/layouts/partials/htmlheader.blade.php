@@ -35,5 +35,7 @@
     <script src="https://oss.max  .com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    @yield('javascripts')
+    
     @yield('style_additional')
 </head>

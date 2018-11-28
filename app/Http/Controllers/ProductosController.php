@@ -15,7 +15,7 @@ class ProductosController extends Controller
     public function index()
     {
         //
-        $productos=Productos::orderBy('id','DESC')->paginate(3);
+        $productos=Productos::orderBy('id','DESC')->paginate(10);
         return view('Productos.index',compact('productos')); 
     }
  
@@ -39,7 +39,7 @@ class ProductosController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request,[ 'nombre'=>'required', 'codigo'=>'required', 'descripcion'=>'required']);
+        $this->validate($request,[ 'nombre'=>'required', 'descripcion'=>'required']);
         Productos::create($request->all());
 
 

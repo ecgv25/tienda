@@ -48,7 +48,8 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 									<label for="producto">Observacion</label>
-										<input type="text" name="observacion" id="observacion" class="form-control input-sm" placeholder="observacion">
+
+										<textarea class="form-control" rows="5" id="comment" name="observacion" id="observacion" class="form-control input-sm" placeholder="observacion"></textarea>
 									</div>
 								</div>
 				

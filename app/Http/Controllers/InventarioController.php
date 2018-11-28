@@ -53,9 +53,11 @@ class InventarioController extends Controller
     public function store(Request $request)
     {
         //
-       // $this->validate($request,[ 'producto'=>'required', 'cantidad'=>'required', 'costo'=>'required']);
-        
-        $observacion = 'se agrego producto al inventario';
+        $this->validate($request,[ 'idProducto'=>'required', 'cantidad'=>'required']);
+        $producto = Productos::where('id', '=', $request['id'])->first();
+
+        $observacion = 'se agrego producto al inventario'.'cantidad:'.$request['cantidad'].'producto:' ;
+
         DB::table('movimientos_inventario')->insert([
             'idProducto' =>  $request['idProducto'],
             'observacion' =>  $observacion,
@@ -63,7 +65,7 @@ class InventarioController extends Controller
             ]);
 
 
-           //bucar la cantidad del producto
+           //buscar la cantidad del producto
             $producto = Inventario::where('idProducto', '=', $request['idProducto'])->first();
             if($producto):
                     //hacer el update con los nuevos campos
@@ -146,9 +148,9 @@ class InventarioController extends Controller
     {
         //
        
-        $producto=Productos::find($id);
+        $inv=Inventario::find($id);
 
-        return view('Productos.edit',compact('producto'));
+        return view('Inventario.edit',compact('inv'));
     }
  
     /**
@@ -160,10 +162,10 @@ class InventarioController extends Controller
      */
     public function update(Request $request, $id)    {
         //
-        $this->validate($request,[ 'nombre'=>'required', 'codigo'=>'required', 'descripcion'=>'required']);
+       // $this->validate($request,[ 'nombre'=>'required', 'codigo'=>'required', 'descripcion'=>'required']);
  
-        Productos::find($id)->update($request->all());
-        return redirect()->route('productos_index')->with('success','Registro actualizado satisfactoriamente');
+        Inventario::find($id)->update($request->all());
+        return redirect()->route('inventario_index')->with('success','Registro actualizado satisfactoriamente');
  
     }
  
@@ -176,7 +178,8 @@ class InventarioController extends Controller
     public function destroy($id)
     {
         //
-        Productos::find($id)->delete();
-        return redirect()->route('productos_index')->with('success','Registro eliminado satisfactoriamente');
+        Inventario::find($id)->delete();
+        return redirect()->route('inventario_index')->with('success','Registro eliminado satisfactoriamente');
+ 
     }
 }

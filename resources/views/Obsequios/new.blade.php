@@ -57,36 +57,42 @@ function referenciaMoneda(selectObject) {
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Nueva Venta</h3>
+					<h3 class="panel-title">Nuevo Obsequio</h3>
 				</div>
 				<div class="panel-body">					
 					<div class="table-container">
-						<form method="POST" action="{{ route('ventas_create') }}"  role="form">
+						<form method="POST" action="{{ route('obsequios_create') }}"  role="form">
 							{{ csrf_field() }}
-
-							<div class="row field_wrapper">
-								<div class="col-xs-12 col-sm-12 col-md-12">
-
-							<label for="tipoMoneda"><h2>Datos del Comprador</h2></label>
+							
+							<label for="tipoMoneda"><h2>Autoriza el Obsequio</h2></label>
 							   
 							
-									<div class="form-group">
-											<label for="cedula">Cedula</label>
-											<input type="text" name="cedula" id="cedula" class="form-control input-sm" placeholder="Nombre/Apellido">
-									</div>
+										<div class="form-group">
+											<label for="cedulaAutoriza">Cedula</label>
+											<input type="text" name="cedulaAutoriza" id="cedulaAutoriza" class="form-control input-sm" placeholder="Nombre/Apellido">
+										</div>
 							
-									<div class="form-group">
-											<label for="comprador">Nombre/Apellido</label>
-											<input type="text" name="comprador" id="comprador" class="form-control input-sm" placeholder="Cedula de quien Autoriza">
-									</div>
-			   
-
-							<label for="tipoMoneda"><h2>Productos</h2></label>
-                             <br>
-								<label for="tipoMoneda">Tipo de Moneda</label>
-									<select name="tipoMoneda" id="tipoMoneda" onChange="referenciaMoneda(this);" class="form-control input-sm">
+										<div class="form-group">
+											<label for="nombreAutoriza">Nombre/Apellido</label>
+											<input type="text" name="nombreAutoriza" id="nombreAutoriza" class="form-control input-sm" placeholder="Cedula de quien Autoriza">
+										</div>
+						
+							<label for="tipoMoneda"><h2>Recibe el Obsequio</h2></label>
+						
+								
+										<div class="form-group">
+											<label for="nombreRecibe">Nombre/Apellido</label>
+											<input type="text" name="nombreRecibe" id="nombreRecibe" class="form-control input-sm" placeholder="Nombre/Apellido">
+										</div>
+				<br>  
+				<br>  
+				<label for="tipoMoneda"><h2>Productos a Obsequiar</h2></label>
+						<div class="row field_wrapper">
+								<div class="col-xs-12 col-sm-12 col-md-12" style="visibility: hidden"> 
+									<label for="tipoMoneda">Tipo de Moneda</label>
+									<select name="tipoMoneda" id="tipoMoneda" onChange="referenciaMoneda(this);" class="form-control input-sm" value="petro">
 										<option value="" selected>Seleccione una opci&oacute;n</option>
-										<option value="petro">Petro</option>
+										<option value="petro" selected="selected">Petro</option>
 										<option value="btc">BitCoin (BTC)</option>
 										<option value="eth">Ether (ETH)</option>
 										<option value="ltc">Litecoin (LTC)</option>
@@ -137,17 +143,6 @@ function referenciaMoneda(selectObject) {
 										</tr>
 									</thead>
 									<tbody class="productos_comprados">
-
-									</tbody>
-								</table>
-								<table class="table table-bordered table-striped ">
-									<thead>
-										<tr>
-											<th>Total</th>
-											
-										</tr>
-									</thead>
-									<tbody class="costos_totales">
 
 									</tbody>
 								</table>
@@ -208,7 +203,6 @@ function referenciaMoneda(selectObject) {
 				var referenciaCrypto = $('#referencia_crypto').val();
 				var costoRealProducto = (costoProducto * referenciaCrypto);
 				var costoTotal = cantidad * costoRealProducto;
-				
 
 				var html  = '<tr id="producto_'+_globales.x+'">';
 					html += '<td>';
@@ -227,18 +221,10 @@ function referenciaMoneda(selectObject) {
 						html += '<a href="javascript:void(0);" onClick="remove(\''+_globales.x+'\')"><i class="far fa-minus-square fa-2x"></i></a>';
 					html += '</td>';
 					html += '</tr>';
-					
+
 				$('.productos_comprados').append(html);
 				
 
-				var html  = '<tr id="costoTotales_'+_globales.x+'">';
-					html += '<tr>';
-					html += '<td>';
-						html += costoTotal;
-					html += '</td>';
-					html += '</tr>';
-					$('.costos_totales').append(html);  
-					
 				var htmlHiddens  = '<div id="producto_hidden_'+_globales.x+'">';
 					htmlHiddens += '<input type="hidden" name="productos_hidden[]" value="'+productoId+'">';
 					htmlHiddens += '<input type="hidden" name="cantidades_hidden[]" value="'+cantidad+'">';

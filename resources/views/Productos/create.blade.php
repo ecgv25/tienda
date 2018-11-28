@@ -30,16 +30,21 @@
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
+									<label for="idProducto">Nombre</label>	
 										<input type="text" name="nombre" id="nombre" class="form-control input-sm" placeholder="Nombre del Producto">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
+									<label for="idProducto">Codigo</label>	
+
 										<input type="text" name="codigo" id="codigo" class="form-control input-sm" placeholder="Codigo">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
+									<label for="idProducto">Descripcion</label>	
+
 										<input type="text" name="descripcion" id="descripcion" class="form-control input-sm" placeholder="Descripcion">
 									</div>
 								</div>

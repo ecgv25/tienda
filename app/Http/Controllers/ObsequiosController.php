@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Ventas;
 use App\Inventario;
-
+use App\Obsequios;
 use Illuminate\Support\Facades\DB;
  
-class VentasController extends Controller
+class ObsequiosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,9 @@ class VentasController extends Controller
     public function index()
     {
         //
-        $ventas=Ventas::orderBy('id','DESC')->paginate(10);
-        return view('Ventas.index',compact('ventas')); 
+        $obsequios= Obsequios::orderBy('id','DESC')->paginate(10);
+
+        return view('Obsequios.index',compact('obsequios')); 
     }
 
     /**
@@ -30,7 +31,7 @@ class VentasController extends Controller
         $productos = DB::table('productos')->get();
 
         
-        return view('Ventas.new',compact('productos'));
+        return view('Obsequios.new',compact('productos'));
     }
 
     /**
@@ -39,47 +40,48 @@ class VentasController extends Controller
      */
     public function create(Request $request)
     {
-        //
-        $this->validate($request,[ 'cedula'=>'required', 'comprador'=>'required']);
+        
         if ($request->isMethod('post')) {
             $productos = $request->get('productos_hidden');
             $cantidadesTotal = 0;
             $MontoTotal = 0;
             foreach($productos as $key => $producto):
+
                 $cantidadesTotal +=$request->get('cantidades_hidden')[$key];
                 $MontoTotal +=$request->get('costos_totales_hidden')[$key];
             endforeach;
-             //registrar la venta
+  //registrar el obsequio
 
-            DB::table('ventas')->insert([
-                'monto' => $MontoTotal,
-                'idCliente' => '1',//definir con la sesion del usuario
-                'idVendedor' => '1',//definir con la sesion del usuario
-                'moneda' =>  $request->get('tipoMoneda'),
+            DB::table('obsequios')->insert([
+                'idProducto' => $producto,
+                'nameRecibe' => $request->get('nombreRecibe'),
+                'nameAutoriza' =>  $request->get('nombreAutoriza'),
+                'cedulaAutoriza' => $request->get('cedulaAutoriza'),
                 'cantidad' => $cantidadesTotal,
-                'montoTotal' => $MontoTotal,
-                'cedula' => $request->get('cedula'),
-                'comprador' => $request->get('comprador')
+                'costoPetros' => $MontoTotal,
+                
+                
 
              ]); 
+          
             foreach($productos as $key => $producto):
                 $cantidad = $request->get('cantidades_hidden')[$key];
                 $costoUnitario = $request->get('costos_unitarios_hidden')[$key];
                 $costoTotal = $request->get('costos_totales_hidden')[$key];
 
                
-                 //registrar el movimiento
-                $observacion = 'venta de producto';
+  //registrar el movimiento
+                $observacion = 'Obsequio de producto';
                 DB::table('movimientos_inventario')->insert([
                     'idProducto' =>  $producto,
                     'observacion' =>  $observacion,
-                    'idTipoMovimiento' => '3',
+                    'idTipoMovimiento' => '4',
                     ]);
-                //registrar los productos asociados a la venta
-                $venta  = Ventas::orderby('created_at','DESC')->take(1)->first();
-                $idVenta = $venta->id;
-                DB::table('productos_ventas')->insert([
-                        'idVenta' => $idVenta,
+  //registrar los productos asociados al obsequio
+   $obsequios  = Obsequios::orderby('created_at','DESC')->take(1)->first();
+   $idObsequios = $obsequios->id;
+                    DB::table('productos_obsequios')->insert([
+                        'idObsequio' => $idObsequios,
                         'idProducto' =>  $producto,
                         'cantidad' =>  $cantidad,
                         'montoUnitario' => $costoUnitario,
@@ -98,9 +100,9 @@ class VentasController extends Controller
             endforeach;
         }
 
-        $ventas=Ventas::orderBy('id','DESC')->paginate(10);
-        //return view('Ventas.index',compact('ventas')); 
-        return redirect()->route('ventas_index')->with('success','Registro creado satisfactoriamente');
+        $obsequios=Obsequios::orderBy('id','DESC')->paginate(10);
+    //return view('Obsequios.index',compact('obsequios')); 
+        return redirect()->route('obsequios_index')->with('success','Registro creado satisfactoriamente');
     }
 
     /**

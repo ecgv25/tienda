@@ -21,26 +21,35 @@
  
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Nuevo Producto</h3>
+					<h3 class="panel-title">Editar Inventario de {{$inv->productos->nombre}}</h3>
 				</div>
 				<div class="panel-body">					
 					<div class="table-container">
-					<form method="POST" action="{{ route('producto_update',$producto->id) }}"  role="form">
+					<form method="POST" action="{{ route('inventario_update',$inv->id) }}"  role="form">
 							{{ csrf_field() }}
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="nombre" id="nombre" class="form-control input-sm" value="{{$producto->nombre}}">
+									<label for="costoPetros">Cantidad</label>
+										<input type="text" name="cantidad" id="cantidad" class="form-control input-sm" value="{{$inv->cantidad}}">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="codigo" id="codigo" class="form-control input-sm" value="{{$producto->codigo}}">
+									<label for="costoPetros">Costo Divisa</label>
+										<input type="text" name="costoDivisas" id="costoDivisas" class="form-control input-sm" value="{{$inv->costoDivisas}}">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="descripcion" id="descripcion" class="form-control input-sm" value="{{$producto->descripcion}}">
+									<label for="costoPetros">Ganancia (%)</label>	
+										<input type="text" name="ganancia" id="ganancia" class="form-control input-sm" value="{{$inv->ganancia}}">
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+									<label for="costoPetros">Costo en Petros</label>	
+										<input type="text" name="costoPetros" id="costoPetros" class="form-control input-sm" value="{{$inv->costoPetros}}">
 									</div>
 								</div>
 							</div>
@@ -62,4 +71,21 @@
 			</div>
 		</div>
 	</section>
+	<script type="text/javascript">
+	$(function(){
+		$('#costoDivisas, #ganancia').keyup(function(){
+			var costoDivisa = parseFloat($('#costoDivisas').val());
+			var porcentajeGanancia = parseFloat($('#ganancia').val());
+			var valorPetroDolar = 60;
+
+			if(isNaN(parseFloat(costoDivisa)) == false && isNaN(parseFloat(porcentajeGanancia)) == false) {
+				var ganancia = (costoDivisa*(porcentajeGanancia/100));
+				var totalCosto = costoDivisa + ganancia;
+				var costoPetro = totalCosto / valorPetroDolar;
+
+				$('#costoPetros').val(costoPetro.toFixed(8));
+			}
+		});
+	});
+	</script>
 	@endsection

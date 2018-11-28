@@ -21,7 +21,7 @@
  
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Ingrear Producto al Inventario</h3>
+					<h3 class="panel-title">Ingresar Producto al Inventario</h3>
 				</div>
 				<div class="panel-body">					
 					<div class="table-container">
@@ -41,17 +41,27 @@
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
+									<label for="cantidad">Cantidad</label>
 										<input type="text" name="cantidad" id="cantidad" class="form-control input-sm" placeholder="cantidad">
 									</div>
 								</div>
+								
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="costoPetros" id="costoPetros" class="form-control input-sm" placeholder="costo en petro">
+									<label for="costoDivisas">Divisas</label>
+										<input type="text" name="costoDivisas" id="costoDivisas" class="form-control input-sm" placeholder="costo en divisas">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="costoDivisas" id="costoDivisas" class="form-control input-sm" placeholder="costo en divisas">
+									<label for="ganancia">Ganancia (%)</label>
+										<input type="text" name="ganancia" id="ganancia" class="form-control input-sm" placeholder="Porcentaje de ganancia">
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+									<label for="costoPetros">Costo en Petros</label>	
+										<input type="text" name="costoPetros" id="costoPetros" class="form-control input-sm" placeholder="costo en petro">
 									</div>
 								</div>
 							</div>
@@ -73,4 +83,24 @@
 			</div>
 		</div>
 	</section>
+
+	<script type="text/javascript">
+	$(function(){
+		$('#costoDivisas, #ganancia').keyup(function(){
+			var costoDivisa = parseFloat($('#costoDivisas').val());
+			var porcentajeGanancia = parseFloat($('#ganancia').val());
+			var valorPetroDolar = 60;
+
+			if(isNaN(parseFloat(costoDivisa)) == false && isNaN(parseFloat(porcentajeGanancia)) == false) {
+				var ganancia = (costoDivisa*(porcentajeGanancia/100));
+				var totalCosto = costoDivisa + ganancia;
+				var costoPetro = totalCosto / valorPetroDolar;
+
+				$('#costoPetros').val(costoPetro.toFixed(8));
+			}
+		});
+	});
+	</script>
 	@endsection
+
+			

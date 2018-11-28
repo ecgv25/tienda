@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 
-@section('htmlheader_title', 'Lista de Ventas')
+@section('htmlheader_title', 'Lista de Obsequios')
 
-@section('content_title', 'Lista de Ventas')
+@section('content_title', 'Lista de Obsequios')
 
 @section('content')
 <div class="row justify-content-md-center">
@@ -10,14 +10,9 @@
         <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
-     
           <div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('ventas_new') }}" class="btn btn-info" >Vender</a>
-              <p>
-        <a href="{{ route('products.excel') }}" class="btn btn-sm btn-primary">
-            Descargar productos en Excel
-        </a>
+              <a href="{{ route('obsequios_new') }}" class="btn btn-info btn-lg" >Obsequiar</a>
             </div>
           </div>
           <div class="table-container">
@@ -25,26 +20,25 @@
              <thead>
                <th>N</th>
                <th>Cantidad de Productos</th>
-               <th>Monto (PTR)</th>
-               <th>Moneda</th>
-               <th>Cedula Comprador</th>
-               <th>Nombre/Apellido Comprador</th>
-               <th>Fecha de la Venta</th>
+               <th>Nombre Autoriza</th>
+               <th>Cedula Autoriza</th>
+               <th>Nombre Recibe</th>  
+               <th>Fecha</th> 
                <th>Editar</th>
                <!--th>Eliminar</th-->
              </thead>
              <tbody>
              <?php $i= 1; ?> 
-              @if($ventas->count())  
-              @foreach($ventas as $venta)  
+              @if($obsequios->count())  
+              @foreach($obsequios as $obsequio)  
               <tr>
                 <td>{{$i}}</td>
-                <td>{{$venta->cantidad}}</td>
-                <td>{{$venta->montoTotal}}</td>
-                <td>{{$venta->moneda}}</td>
-                <td>{{$venta->cedula}}</td>
-                <td>{{$venta->comprador}}</td>
-                <td>{{$venta->created_at->format('d/m/Y')}}</td>
+                <td>{{$obsequio->cantidad}}</td>
+                <td>{{$obsequio->nameAutoriza}}</td>
+                <td>{{$obsequio->cedulaAutoriza}}</td>
+                <td>{{$obsequio->nameRecibe}}</td>
+
+                <td>{{$obsequio->created_at->format('d/m/Y')}}</td>
 
                 <td><a class="btn btn-primary btn-xs" href="#" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
@@ -67,7 +61,7 @@
           </table>
         </div>
       </div>
-      {{ $ventas->links() }}
+
     </div>
   </div>
 </div> 
