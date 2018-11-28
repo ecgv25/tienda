@@ -30,7 +30,7 @@
               @if($inventario->count())  
               @foreach($inventario as $inv)  
               <tr>
-                <td>{{$inv->idProducto}}</td>
+                <td>{{$inv->productos->nombre}}</td>
                 <td>{{$inv->cantidad}}</td>
                 <td>{{$inv->costoDivisas}}</td> 
                 <td>{{$inv->costoPetros}}</td>

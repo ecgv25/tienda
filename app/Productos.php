@@ -8,11 +8,4 @@ class Productos extends Model
 {
     protected $fillable = ['id', 'nombre', 'codigo' ,'descripcion'];
 
-
-
-    public function Inventario()
-    {
-        return $this->belongsTo('Inventario', 'idProducto');
-    }
-
 }
