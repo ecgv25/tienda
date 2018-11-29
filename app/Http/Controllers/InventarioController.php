@@ -7,7 +7,10 @@ use App\Inventario;
 use App\Productos;
 use Illuminate\Support\Facades\DB;
 
-
+use App\Exports\InventarioExport;
+use App\Imports\VentasImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
  
 class InventarioController extends Controller
 { 
@@ -181,5 +184,14 @@ class InventarioController extends Controller
         Inventario::find($id)->delete();
         return redirect()->route('inventario_index')->with('success','Registro eliminado satisfactoriamente');
  
+    }
+    public function export() 
+    {
+        return Excel::download(new InventarioExport, 'users.xlsx');
+    }
+    
+    public function import() 
+    {
+        return Excel::import(new InventarioExport, 'users.xlsx');
     }
 }

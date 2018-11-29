@@ -10,6 +10,7 @@
             <li> <a href="{{ route('ventas_index') }}">Ventas</a></li>
             <li> <a href="{{ route('obsequios_index') }}">Obsequios</a></li> 
             <li> <a href="{{ route('inventario_index') }}">Inventario</a></li>
+            <li> <a href="{{ route('inventario_index') }}">Reportes</a></li>
            
             </ul>
         </nav>

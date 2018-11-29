@@ -7,6 +7,12 @@ use App\Ventas;
 use App\Inventario;
 use App\Obsequios;
 use Illuminate\Support\Facades\DB;
+
+
+use App\Exports\ProductosObsequiosExport;
+use App\Imports\VentasImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
  
 class ObsequiosController extends Controller
 {
@@ -161,6 +167,15 @@ class ObsequiosController extends Controller
 
 
         return $output;      
+    }
+    public function export() 
+    {
+        return Excel::download(new ProductosObsequiosExport, 'users.xlsx');
+    }
+    
+    public function import() 
+    {
+        return Excel::import(new ProductosObsequiosExport, 'users.xlsx');
     }
  
 }

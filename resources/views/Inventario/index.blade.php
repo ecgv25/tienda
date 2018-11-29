@@ -15,11 +15,16 @@
           
           <div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('inventario_new') }}" class="btn btn-info" >Añadir Producto al Inventario</a>
+              <a href="{{ route('inventario_new') }}" class="btn  btn-lg btn-info" >Añadir Producto al Inventario</a>
             </div>
             <div class="btn-group">
-              <a href="{{ route('inventario_ajuste') }}" class="btn btn-danger" >Ajuste de Producto del Inventario</a>
+              <a href="{{ route('inventario_ajuste') }}" class="btn  btn-lg btn-danger" >Ajuste de Producto del Inventario</a>
             </div>
+            <div class="btn-group">
+            
+            <a href="{{ route('inventario_export') }}" class="btn btn-lg btn-primary">Descargar Inventario en Excel </a>
+                </div>
+          </div>
           </div>
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">
@@ -29,7 +34,7 @@
                <th>Cantidad</th>
                <th>Costo Divisas</th>
                <th>Ganancia %</th>
-               <th>Precio de Venta (Petro)</th>
+               <th>Precio de Venta PTR [CD+(CD*%G))/60]</th>
                <th>Editar</th>
                <!--th>Eliminar</th-->
              </thead>

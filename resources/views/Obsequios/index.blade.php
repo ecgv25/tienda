@@ -14,6 +14,10 @@
             <div class="btn-group">
               <a href="{{ route('obsequios_new') }}" class="btn btn-info btn-lg" >Obsequiar</a>
             </div>
+            <div class="btn-group">
+            
+            <a href="{{ route('obsequios_export') }}" class="btn btn-lg btn-primary">Descargar Obsequios en Excel </a>
+                </div>
           </div>
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">

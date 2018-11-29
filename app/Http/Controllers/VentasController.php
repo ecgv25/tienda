@@ -7,6 +7,10 @@ use App\Ventas;
 use App\Inventario;
 
 use Illuminate\Support\Facades\DB;
+use App\Exports\ProductosVentasExport;
+use App\Imports\VentasImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
  
 class VentasController extends Controller
 {
@@ -82,7 +86,7 @@ class VentasController extends Controller
                         'idVenta' => $idVenta,
                         'idProducto' =>  $producto,
                         'cantidad' =>  $cantidad,
-                        'montoUnitario' => $costoUnitario,
+                        'montoUnitario' =>$costoUnitario,
                         ]);
   
 
@@ -159,6 +163,16 @@ class VentasController extends Controller
 
 
         return $output;      
+    }
+
+    public function export() 
+    {
+        return Excel::download(new ProductosVentasExport, 'users.xlsx');
+    }
+    
+    public function import() 
+    {
+        return Excel::import(new ProductosVentasExport, 'users.xlsx');
     }
  
 }

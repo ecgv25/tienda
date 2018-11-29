@@ -13,12 +13,14 @@
      
           <div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('ventas_new') }}" class="btn btn-info" >Vender</a>
-              <p>
-        <a href="{{ route('products.excel') }}" class="btn btn-sm btn-primary">
-            Descargar productos en Excel
-        </a>
+              <a href="{{ route('ventas_new') }}" class="btn btn-info btn-lg" >Vender</a>
+            
             </div>
+            <div class="btn-group">
+            
+        <a href="{{ route('ventas_export') }}" class="btn btn-lg btn-primary">Descargar ventas en Excel </a>
+            </div>
+
           </div>
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">

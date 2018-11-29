@@ -171,7 +171,8 @@ function referenciaMoneda(selectObject) {
 	</section>
 	<script type="text/javascript">
 		var _globales = {
-				  x: 1
+				  x: 1,
+				  totalVentas: 0
 		};
 
 		$(document).ready(function(){
@@ -200,7 +201,9 @@ function referenciaMoneda(selectObject) {
 			var wrapper		= $('.field_wrapper'); //Input field wrapper
 			var add_button	= $("#add_button"); //Add button ID
 			
+			
 			$(add_button).click(function(){
+			
 				var productoId = $('#producto option:selected').val();
 				var nombreProducto = $('#producto option:selected').text();
 				var cantidad = $('#cantidad').val();
@@ -208,7 +211,9 @@ function referenciaMoneda(selectObject) {
 				var referenciaCrypto = $('#referencia_crypto').val();
 				var costoRealProducto = (costoProducto * referenciaCrypto);
 				var costoTotal = cantidad * costoRealProducto;
+				_globales.totalVentas = costoTotal + _globales.totalVentas;
 				
+			
 
 				var html  = '<tr id="producto_'+_globales.x+'">';
 					html += '<td>';
@@ -221,7 +226,7 @@ function referenciaMoneda(selectObject) {
 						html += costoRealProducto;
 					html += '</td>';
 					html += '<td>';
-						html += costoTotal;
+						html += costoTotal.toFixed(6);
 					html += '</td>';
 					html += '<td>';
 						html += '<a href="javascript:void(0);" onClick="remove(\''+_globales.x+'\')"><i class="far fa-minus-square fa-2x"></i></a>';
@@ -231,14 +236,14 @@ function referenciaMoneda(selectObject) {
 				$('.productos_comprados').append(html);
 				
 
-				var html  = '<tr id="costoTotales_'+_globales.x+'">';
-					html += '<tr>';
-					html += '<td>';
-						html += costoTotal;
-					html += '</td>';
-					html += '</tr>';
-					$('.costos_totales').append(html);  
-					
+				var htmltotal  = '<tr id="costoTotales_'+_globales.x+'">';
+				htmltotal += '<tr>';
+				htmltotal += '<td>';
+				htmltotal += _globales.totalVentas.toFixed(6);
+				htmltotal += '</td>';
+				htmltotal += '</tr>';
+					$('.costos_totales').html(htmltotal);  
+
 				var htmlHiddens  = '<div id="producto_hidden_'+_globales.x+'">';
 					htmlHiddens += '<input type="hidden" name="productos_hidden[]" value="'+productoId+'">';
 					htmlHiddens += '<input type="hidden" name="cantidades_hidden[]" value="'+cantidad+'">';
@@ -261,9 +266,21 @@ function referenciaMoneda(selectObject) {
 		});
 	
 		function remove(i) {
+			var valorEliminar = $('#producto_'+i+' td:nth-child(4)').text();
+			_globales.totalVentas = _globales.totalVentas - parseFloat(valorEliminar);
+
+			var htmltotal  = '<tr id="costoTotales_'+_globales.x+'">';
+				htmltotal += '<tr>';
+				htmltotal += '<td>';
+				htmltotal += _globales.totalVentas.toFixed(6);
+				htmltotal += '</td>';
+				htmltotal += '</tr>';
+			$('.costos_totales').html(htmltotal); 
+
+
 			$('#producto_'+i).remove(); 
 			$('#producto_hidden_'+i).remove();
-			_globales.x--;
+			//_globales.x--;
 			return false;
 		}
 	</script>

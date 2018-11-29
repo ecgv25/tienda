@@ -32,6 +32,7 @@ Route::prefix('ventas')->group(function () {
     Route::post('/create', 'VentasController@create')->name('ventas_create');
     Route::get('/ajax-costo-producto', 'VentasController@costoProducto')->name('ajax_ventas_costo_producto');
     Route::get('/ajax-verificar-referencias-cryptos', 'VentasController@verificarReferenciasCryptos')->name('ajax_verificar_referencias_cryptos');
+    Route::get('/export', 'VentasController@export')->name('ventas_export');
 });
 Route::prefix('obsequios')->group(function () {
     Route::get('/', 'ObsequiosController@index')->name('obsequios_index');
@@ -39,6 +40,7 @@ Route::prefix('obsequios')->group(function () {
     Route::post('/create', 'ObsequiosController@create')->name('obsequios_create');
     Route::get('/ajax-costo-producto', 'ObsequiosController@costoProducto')->name('ajax_ventas_costo_producto');
     Route::get('/ajax-verificar-referencias-cryptos', 'ObsequiosController@verificarReferenciasCryptos')->name('ajax_verificar_referencias_cryptos');
+    Route::get('/export', 'ObsequiosController@export')->name('obsequios_export');
 });
 Route::prefix('inventario')->group(function () {
     Route::get('/', 'InventarioController@index')->name('inventario_index');
@@ -50,6 +52,7 @@ Route::prefix('inventario')->group(function () {
     Route::delete('/destroy/{id}', 'InventarioController@destroy')->name('inventario_destroy');
     Route::get('/edit/{id}', 'InventarioController@edit')->name('inventario_edit');
     Route::post('/update/{id}', 'InventarioController@update')->name('inventario_update');
+    Route::get('/export', 'InventarioController@export')->name('inventario_export');
 });
 Auth::routes();
 
@@ -59,5 +62,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', 'ProductController@index')->name('products');
-Route::get('descargar-productos', 'ProductController@export')->name('products.excel');
+
+
+
