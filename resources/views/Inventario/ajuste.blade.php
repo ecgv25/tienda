@@ -1,4 +1,5 @@
-@extends('layouts.layout')
+@extends('layouts.app')
+@section('content_title', 'Ajuste de Inventario')
 @section('content')
 <div class="row">
 	<section class="content">
@@ -19,13 +20,11 @@
 			</div>
 			@endif
  
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Ajuste de Inventario</h3>
-				</div>
-				<div class="panel-body">					
-					<div class="table-container">
-						<form method="POST" action="{{ route('inventario_retirar') }}"  role="form">
+		
+				
+			<div class="card">
+			<div class="card-body">	
+						<form method="POST" class="floating-labels m-t-20" action="{{ route('inventario_retirar') }}"  role="form">
 							{{ csrf_field() }}
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
@@ -37,19 +36,23 @@
 													<option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
 												@endforeach
 											</select>
+											<span class="bar"></span>
+
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 									<label for="producto">Cantidad</label>
-										<input type="text" name="cantidad" id="cantidad" class="form-control input-sm" placeholder="cantidad">
+										<input type="text" name="cantidad" id="cantidad" class="form-control input-sm">
+										<span class="bar"></span>
 									</div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 									<label for="producto">Observacion</label>
 
-										<textarea class="form-control" rows="5" id="comment" name="observacion" id="observacion" class="form-control input-sm" placeholder="observacion"></textarea>
+										<textarea class="form-control" rows="5" id="comment" name="observacion" id="observacion" class="form-control input-sm"></textarea>
+										<span class="bar"></span>
 									</div>
 								</div>
 				
@@ -69,7 +72,7 @@
 					</div>
 				</div>
  
-			</div>
+	
 		</div>
 	</section>
 	@endsection

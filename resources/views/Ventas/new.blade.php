@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-
+@section('content_title', 'Ventas')
 @section('javascripts')
 <script>
 
@@ -37,6 +37,7 @@ function referenciaMoneda(selectObject) {
 
 @section('content')
 <div class="row">
+
 	<section class="content">
 		<div class="col-md-8 col-md-offset-2">
 			@if (count($errors) > 0)
@@ -56,9 +57,7 @@ function referenciaMoneda(selectObject) {
 			@endif
 
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Nueva Venta</h3>
-				</div>
+				
 				<div class="panel-body">					
 					<div class="table-container">
 						<form method="POST" action="{{ route('ventas_create') }}"  role="form">

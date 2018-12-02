@@ -167,7 +167,7 @@ class VentasController extends Controller
 
     public function export() 
     {
-        return Excel::download(new ProductosVentasExport, 'users.xlsx');
+        return Excel::download(new ProductosVentasExport, 'ventas.xlsx');
     }
     
     public function import() 

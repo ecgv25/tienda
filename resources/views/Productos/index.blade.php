@@ -1,25 +1,19 @@
 @extends('layouts.layout')
 
-@section('htmlheader_title', 'Lista productos')
+@section('htmlheader_title', 'Productos')
 
-@section('content_title', 'Lista productos')
+@section('content_title', 'Productos')
 
 @section('content')
-<div class="row justify-content-md-center">
-      
-        <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-body">
-     
-          <div class="pull-right">
-            <div class="btn-group">
-              <a href="{{ route('productos_create') }}" class="btn btn-info" >Añadir Producto</a>
-            </div>
-          </div>
-          <div class="table-container">
-            <table id="mytable" class="table table-bordred table-striped">
+  <div class="card">
+      <div class="card-body">
+            <h4 class="card-title">
+                Listado de Productos
+            </h4>
+           <div class="table-responsive">
+              <table class="table table-hover">
              <thead>
-             <th>N</th>
+               <th>N</th>
                <th>Nombre</th>
                <th>Descripcion</th>
                <th>Codigo</th>
@@ -55,11 +49,19 @@
             </tbody>
  
           </table>
+          <div class="alert alert-danger">
+                    	Aún no ha registrado ningun producto.
+                    </div>
+                    <div class="form-group m-t-40">
+                        <div class="col-12">
+                            <a href="{{ route('productos_create') }}" class="btn btn-outline-info">
+                                Registrar Producto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+          	</div>
         </div>
-      </div>
-      {{ $productos->links() }}
-    </div>
-  </div>
-</section>
- 
+      <div class="col col-lg-1"></div>
+	</div>
 @endsection

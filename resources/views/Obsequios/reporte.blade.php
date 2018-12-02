@@ -4,10 +4,8 @@
         <th>Codigo de Obsequio</th>
         <th>Producto</th>
         <th>Cantidad</th>
-    
         <th>Recibe</th>
         <th>Autoriza</th>
-       
         <th>Fecha del Obsequio</th>
        
  </tr>
@@ -21,7 +19,7 @@
             <td>{{ $prod->obsequios->nameRecibe }}</td>
             <td>{{ $prod->obsequios->nameAutoriza }}</td>
            
-            <td>{{ $prod->obsequios->created_at->format('d/m/Y') }}</td>
+            <td>{{ $prod->obsequios->created_at->format('d/m/Y h:s a') }}</td>
         </tr>
     @endforeach
     </tbody>

@@ -170,7 +170,7 @@ class ObsequiosController extends Controller
     }
     public function export() 
     {
-        return Excel::download(new ProductosObsequiosExport, 'users.xlsx');
+        return Excel::download(new ProductosObsequiosExport, 'obsequios.xlsx');
     }
     
     public function import() 

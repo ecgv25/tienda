@@ -29,7 +29,7 @@
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <div id="main-wrapper">
-        /@if (auth()->user() instanceof \App\Models\Persona)
+        
             <!-- ============================================================== -->
             <!-- Topbar header - style you can find in pages.scss -->
             <!-- ============================================================== -->
@@ -39,19 +39,16 @@
             <!-- Left Sidebar - style you can find in sidebar.scss  -->
             <!-- ============================================================== -->
             @include('layouts.partials.left_sidebar')            
-        @endif
-        @include('layouts.partials.left_sidebar')   
-        @if (auth()->user() instanceof \App\Models\Usuario)
+       
+      
             <!-- ============================================================== -->
             <!-- Topbar header - style you can find in pages.scss -->
             <!-- ============================================================== -->
-            @include('layouts.partials.admin.topbar_header')
 
             <!-- ============================================================== -->
             <!-- Left Sidebar - style you can find in sidebar.scss  -->
             <!-- ============================================================== -->
-            @include('layouts.partials.admin.left_sidebar')
-        @endif
+      
 
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
@@ -61,7 +58,7 @@
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container-fluid">
+            <br> <div class="container-fluid">
                 
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
@@ -128,7 +125,24 @@
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
       });
-    </script>        
+    </script>  	
+    <script type="text/javascript">
+	$(function(){
+		$('#costoDivisas, #ganancia').keyup(function(){
+			var costoDivisa = parseFloat($('#costoDivisas').val());
+			var porcentajeGanancia = parseFloat($('#ganancia').val());
+			var valorPetroDolar = 60;
+
+			if(isNaN(parseFloat(costoDivisa)) == false && isNaN(parseFloat(porcentajeGanancia)) == false) {
+				var ganancia = (costoDivisa*(porcentajeGanancia/100));
+				var totalCosto = costoDivisa + ganancia;
+				var costoPetro = totalCosto / valorPetroDolar;
+
+				$('#costoPetros').val(costoPetro.toFixed(8));
+			}
+		});
+	});
+	</script>      
 
     @yield('scripts')
     

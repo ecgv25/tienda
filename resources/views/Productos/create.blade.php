@@ -1,8 +1,7 @@
-@extends('layouts.layout')
+@extends('layouts.app')
+@section('content_title', 'Registro de Producto')
 @section('content')
-<div class="row">
-	<section class="content">
-		<div class="col-md-8 col-md-offset-2">
+
 			@if (count($errors) > 0)
 			<div class="alert alert-danger">
 				<strong>Error!</strong> Revise los campos obligatorios.<br><br>
@@ -19,52 +18,65 @@
 			</div>
 			@endif
  
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Nuevo Producto</h3>
-				</div>
-				<div class="panel-body">					
-					<div class="table-container">
-						<form method="POST" action="{{ route('productos_store') }}"  role="form">
+			<div class="card">
+			
+				<div class="card-body">					
+						<form method="POST" class="floating-labels m-t-20" action="{{ route('productos_store') }}"  role="form">
 							{{ csrf_field() }}
+
+ 							<div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <input id="nombre" type="text" class="text-capitalize form-control" name="nombre" value="" required>
+                                            <span class="bar"></span>
+                                            <label for="nombres">Nombre</label>
+
+                                            <div class="form-control-feedback">
+                                            </div>
+                                        </div>
+                                    </div>
+
+ 							</div>
+
 							<div class="row">
-								<div class="col-xs-6 col-sm-6 col-md-6">
+                			
+								<div class="col-6">
 									<div class="form-group">
-									<label for="idProducto">Nombre</label>	
-										<input type="text" name="nombre" id="nombre" class="form-control input-sm" placeholder="Nombre del Producto">
+											<input id="codigo" type="text" class="text-capitalize form-control" name="codigo" value="">
+											<span class="bar"></span>
+											<label for="codigo">Codigo</label>	
+											<div class="form-control-feedback">
+											</div>
 									</div>
 								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="col-6">
 									<div class="form-group">
-									<label for="idProducto">Codigo</label>	
+									<input id="descripcion" type="text" class="text-capitalize form-control" name="descripcion" value="" required>
 
-										<input type="text" name="codigo" id="codigo" class="form-control input-sm" placeholder="Codigo">
-									</div>
-								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-									<label for="idProducto">Descripcion</label>	
+									<span class="bar"></span>
+									<label for="descripcion">Descripción</label>	
+									<div class="form-control-feedback">
+											</div>
 
-										<input type="text" name="descripcion" id="descripcion" class="form-control input-sm" placeholder="Descripcion">
 									</div>
 								</div>
 							</div>
  
 						
 							
-							<div class="row">
- 
-								<div class="col-xs-12 col-sm-12 col-md-12">
-									<input type="submit"  value="Guardar" class="btn btn-success btn-block">
-									<a href="{{ route('productos_index') }}" class="btn btn-info btn-block" >Atrás</a>
-								</div>	
- 
-							</div>
+						<div class="row">
+							<div class="form-group m-t-20">
+								<div class="col-12">
+									<a href="{{ route('productos_index') }}" class="btn btn-outline-info" >Atrás</a>
+									<input type="submit"  value="Registrar" class="btn btn-outline-info">
+
+								</div>
+                   			</div>
+ 						 </div>
 						</form>
 					</div>
-				</div>
+				
  
 			</div>
-		</div>
-	</section>
+
 	@endsection

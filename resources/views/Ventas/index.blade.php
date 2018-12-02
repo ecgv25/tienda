@@ -1,10 +1,11 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('htmlheader_title', 'Lista de Ventas')
 
 @section('content_title', 'Lista de Ventas')
 
 @section('content')
+<br>
 <div class="row justify-content-md-center">
       
         <div class="col-md-12">
@@ -13,12 +14,12 @@
      
           <div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('ventas_new') }}" class="btn btn-info btn-lg" >Vender</a>
+              <a href="{{ route('ventas_new') }}" class="btn btn-info btn-sm" >Vender</a>
             
             </div>
             <div class="btn-group">
             
-        <a href="{{ route('ventas_export') }}" class="btn btn-lg btn-primary">Descargar ventas en Excel </a>
+        <a href="{{ route('ventas_export') }}" class="btn btn-sm btn-primary">Descargar ventas en Excel </a>
             </div>
 
           </div>
@@ -32,7 +33,7 @@
                <th>Cedula Comprador</th>
                <th>Nombre/Apellido Comprador</th>
                <th>Fecha de la Venta</th>
-               <th>Editar</th>
+               <!--th>Editar</th-->
                <!--th>Eliminar</th-->
              </thead>
              <tbody>
@@ -48,8 +49,8 @@
                 <td>{{$venta->comprador}}</td>
                 <td>{{$venta->created_at->format('d/m/Y')}}</td>
 
-                <td><a class="btn btn-primary btn-xs" href="#" ><span class="glyphicon glyphicon-pencil"></span></a></td>
-                <td>
+                <!--td><a class="btn btn-primary btn-xs" href="#" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td-->
                   <form action="" method="post">
                    {{csrf_field()}}
                    <!--input name="_method" type="hidden" value="DELETE"-->

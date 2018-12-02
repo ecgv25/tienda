@@ -4,18 +4,19 @@
         <!-- Logo -->
         <!-- ============================================================== -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ route('admin.home') }}">
+            <a class="navbar-brand" href="#">
                 <!-- Logo icon -->
                 <b>
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="{{ asset('/images/logo-' . env('APP_ORG') . '.png') }}" alt="Inicio" />
+                    <img src=" {{ ('/images/logo-sunacrip.png') }}" alt="Inicio" />
+              
                 </b>
                 <!--End Logo icon -->
                 <!-- Logo text -->
                 <span>
                     <!-- dark Logo text -->
-                    <img src="{{ asset('/images/text-' . env('APP_ORG') . '.png') }}" alt="Inicio" />
+                    <img src="{{ ('/images/text-sunacrip.png') }}" alt="Inicio" />
                 </span>
             </a>
         </div>
@@ -50,20 +51,18 @@
                                         <i class="fas fa-user-circle fa-5x"></i>
                                     </div>
                                     <div class="u-text">
-                                        <h4 class="text-capitalize">{{ auth()->user()->nombre_completo }}</h4>
-                                        <p class="text-muted">{{ auth()->user()->correo }}</p>
                                         <a href="javascript:void()" class="btn btn-rounded btn-danger btn-sm">{{ __('My Profile') }}</a>
                                     </div>
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li>
-                                <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     <i class="fa fa-power-off"></i>
                                     {{ __('Logout') }}
                                 </a>
                                 
-                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="#" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </li>

@@ -22,7 +22,7 @@ class InventarioController extends Controller
     public function index()
     {
         //
-        $inventario=Inventario::orderBy('id','DESC')->paginate(10);
+        $inventario=Inventario::orderBy('id','DESC')->paginate(1000);
 
         return view('Inventario.index',compact('inventario')); 
     }
@@ -187,7 +187,7 @@ class InventarioController extends Controller
     }
     public function export() 
     {
-        return Excel::download(new InventarioExport, 'users.xlsx');
+        return Excel::download(new InventarioExport, 'inventario.xlsx');
     }
     
     public function import() 

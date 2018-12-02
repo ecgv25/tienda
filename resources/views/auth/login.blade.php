@@ -18,9 +18,9 @@
 
 
                          <div class="form-group m-t-40{{ $errors->has('email') ? ' has-danger has-error' : '' }}">
-                            <input id="correo" type="email" class="form-control{{ $errors->has('email') ? ' form-control-danger' : '' }}" name="correo" value="{{ old('email') }}" required autofocus>
+                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' form-control-danger' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
                             <span class="bar"></span>
-                            <label for="correo"><span  class="input-group-addon"><i class="fa fa-envelope "></i></span>{{ __('E-Mail Address') }}</label>
+                            <label for="email"><span  class="input-group-addon"><i class="fa fa-envelope "></i></span>{{ __('E-Mail Address') }}</label>
 
                             @if ($errors->has('email'))
                             <div class="form-control-feedback">

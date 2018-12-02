@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('htmlheader_title', 'Inventario de producto')
 
@@ -15,14 +15,14 @@
           
           <div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('inventario_new') }}" class="btn  btn-lg btn-info" >Añadir Producto al Inventario</a>
+              <a href="{{ route('inventario_new') }}" class="btn  btn-sm btn-info" >Añadir Producto al Inventario</a>
             </div>
             <div class="btn-group">
-              <a href="{{ route('inventario_ajuste') }}" class="btn  btn-lg btn-danger" >Ajuste de Producto del Inventario</a>
+              <a href="{{ route('inventario_ajuste') }}" class="btn  btn-sm btn-danger" >Ajuste de Producto del Inventario</a>
             </div>
             <div class="btn-group">
             
-            <a href="{{ route('inventario_export') }}" class="btn btn-lg btn-primary">Descargar Inventario en Excel </a>
+            <a href="{{ route('inventario_export') }}" class="btn btn-sm btn-primary">Descargar Inventario en Excel </a>
                 </div>
           </div>
           </div>
