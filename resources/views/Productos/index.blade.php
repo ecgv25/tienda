@@ -1,15 +1,33 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('htmlheader_title', 'Productos')
 
 @section('content_title', 'Productos')
 
 @section('content')
+
+			@if(Session::has('success'))
+
+      <div class="alert alert-info alert-dismissable col-10">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+				{{Session::get('success')}}
+			</div>
+			@endif
+ 
   <div class="card">
       <div class="card-body">
             <h4 class="card-title">
                 Listado de Productos
             </h4>
+            <div class="pull-right">  
+            <div class="btn-group">
+            
+            <a href="{{ route('productos_create') }}" class="btn btn-outline-info btn-lg">
+                                Registrar Producto
+                            </a>
+                </div>
+          </div>
+          </div>
            <div class="table-responsive">
               <table class="table table-hover">
              <thead>
@@ -22,7 +40,8 @@
              </thead>
              <tbody>
              <?php $i= 1; ?>
-              @if($productos->count())  
+              @if($productos->count() > 1)  
+              
               @foreach($productos as $producto)  
               <tr>
               <td>{{$i}}</td>
@@ -43,25 +62,20 @@
                @endforeach 
                @else
                <tr>
-                <td colspan="8">No hay registro !!</td>
+              
+                <td colspan="8"> <div class="alert alert-danger">No hay productos registrados !! </div></td>
+               
               </tr>
               @endif
             </tbody>
  
           </table>
-          <div class="alert alert-danger">
-                    	Aún no ha registrado ningun producto.
-                    </div>
-                    <div class="form-group m-t-40">
-                        <div class="col-12">
-                            <a href="{{ route('productos_create') }}" class="btn btn-outline-info">
-                                Registrar Producto
-                            </a>
-                        </div>
-                    </div>
-                </div>
-          	</div>
         </div>
-      <div class="col col-lg-1"></div>
+                
+        </div>
+          
+        </div>
+       
+      <div class="col col-lg-1"> {{ $productos->links() }}</div>
 	</div>
 @endsection

@@ -27,7 +27,7 @@ File: scss
   .topbar .navbar-light .navbar-nav .nav-item > a.nav-link {
     color: #a6b7bf; }
     .topbar .navbar-light .navbar-nav .nav-item > a.nav-link:hover, .topbar .navbar-light .navbar-nav .nav-item > a.nav-link:focus {
-      color: #0B5987 !important; }
+      color: #092634 !important; }
 
 .logo-center .topbar .navbar-header {
   text-align: center;
@@ -104,11 +104,11 @@ a.link:hover, a.link:focus {
 *******************/
 .card-no-border .left-sidebar,
 .card-no-border .sidebar-nav {
-  background: #0B5987; }
+  background: #092634; }
 
 .left-sidebar,
 .sidebar-nav {
-  background: #0B5987; }
+  background: #092634; }
 
 .mini-sidebar .sidebar-nav {
   background: transparent; }
@@ -118,7 +118,7 @@ a.link:hover, a.link:focus {
     background: #1c2128; } }
 
 .sidebar-nav {
-  background: #0B5987; }
+  background: #092634; }
 
 .user-profile .profile-text a {
   color: #687384 !important; }

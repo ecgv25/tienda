@@ -1,10 +1,7 @@
 @extends('layouts.app')
 @section('content_title', 'Ingresar Producto al Inventario')
 @section('content')
-<div class="row">
-	<section class="content">
-		<div class="col-md-8 col-md-offset-2">
-			@if (count($errors) > 0)
+@if (count($errors) > 0)
 			<div class="alert alert-danger">
 				<strong>Error!</strong> Revise los campos obligatorios.<br><br>
 				<ul>
@@ -19,16 +16,19 @@
 				{{Session::get('success')}}
 			</div>
 			@endif
- 		<div class="card">
-			<div class="card-body">		
+			<div class="well">El costo en petros se calculara tomando en cuenta la ganancia indicada y el costo del petro al momento en $</div>
+			<div class="card">
+			
+				<div class="card-body">		
 						<form method="POST" class="floating-labels m-t-20" action="{{ route('inventario_store') }}"  role="form">
 							{{ csrf_field() }}
 							<div class="row">
+							
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 									<label for="idProducto">Producto</label>
 											<select name="idProducto" id="idProducto" class="form-control input-sm" required>
-												<option value="" selected>Seleccione una opci&oacute;n</option>
+												<option value="" selected></option>
 												@foreach ($productos as $producto)
 													<option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
 												@endforeach
@@ -36,6 +36,7 @@
 											<span class="bar"></span>
 									</div>
 								</div>
+								
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 									<label for="cantidad">Cantidad</label>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
 use App\Productos;
+use App\Inventario;
+
  
 class ProductosController extends Controller
 {
@@ -15,7 +17,7 @@ class ProductosController extends Controller
     public function index()
     {
         //
-        $productos=Productos::orderBy('id','DESC')->paginate(10);
+        $productos=Productos::orderBy('id','DESC')->simplePaginate(5);
         return view('Productos.index',compact('productos')); 
     }
  
@@ -97,8 +99,22 @@ class ProductosController extends Controller
      */
     public function destroy($id)
     {
-        //
-        Productos::find($id)->delete();
-        return redirect()->route('productos_index')->with('success','Registro eliminado satisfactoriamente');
+
+        $producto=Productos::find($id);
+        $inv=Inventario::find($id);
+        if ( $producto or $inv) {
+         // Si el producto tiene inventario y/o ventas no se puede eliminar
+         return redirect()->route('productos_index', ['id' => $id])->with('success','El producto no puede ser eliminado ya que presenta inventario o ventas activas');
+
+        }else{
+
+            Productos::find($id)->delete();
+            return redirect()->route('productos_index')->with('success','Registro eliminado satisfactoriamente');
+        
+        }
+
+       
+    
+    
     }
 }

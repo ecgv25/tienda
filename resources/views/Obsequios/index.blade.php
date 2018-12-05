@@ -7,16 +7,16 @@
 @section('content')
 <div class="row justify-content-md-center">
       
-        <div class="col-md-12">
+    <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('obsequios_new') }}" class="btn btn-info btn-sm" >Obsequiar</a>
+              <a href="{{ route('obsequios_new') }}" class="btn btn-outline-info btn-lg" >Obsequiar</a>
             </div>
             <div class="btn-group">
             
-            <a href="{{ route('obsequios_export') }}" class="btn btn-sm btn-primary">Descargar Obsequios en Excel </a>
+            <a href="{{ route('obsequios_export') }}" class="btn btn-outline-info btn-lg">Descargar Obsequios en Excel </a>
                 </div>
           </div>
           <div class="table-container">

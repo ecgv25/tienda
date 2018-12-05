@@ -14,12 +14,12 @@
      
           <div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('ventas_new') }}" class="btn btn-info btn-sm" >Vender</a>
+              <a href="{{ route('ventas_new') }}" class="btn btn-outline-info btn-lg" >Vender</a>
             
             </div>
             <div class="btn-group">
             
-        <a href="{{ route('ventas_export') }}" class="btn btn-sm btn-primary">Descargar ventas en Excel </a>
+        <a href="{{ route('ventas_export') }}" class="btn btn-outline-info btn-lg">Descargar ventas en Excel </a>
             </div>
 
           </div>
